@@ -4,15 +4,18 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, jpeg, ExtCtrls, ComCtrls;
+  Dialogs, StdCtrls, jpeg, ExtCtrls, ComCtrls, Vcl.ExtDlgs;
 
 type
   TFMain = class(TForm)
-    Img : TImage;
-    BCreateExcel : TButton;
-    ProgressBar1 : TProgressBar;
-    procedure FormCanResize(Sender : TObject; var NewWidth, NewHeight : Integer; var Resize : Boolean);
-    procedure BCreateExcelClick(Sender : TObject);
+    Img: TImage;
+    BCreateExcel: TButton;
+    ProgressBar1: TProgressBar;
+    OPD: TOpenPictureDialog;
+    procedure FormCanResize(Sender: TObject; var NewWidth, NewHeight: Integer;
+      var Resize: Boolean);
+    procedure BCreateExcelClick(Sender: TObject);
+    procedure ImgDblClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -20,7 +23,7 @@ type
   end;
 
 var
-  FMain : TFMain;
+  FMain: TFMain;
 
 implementation
 
@@ -29,11 +32,11 @@ implementation
 uses
   ComObj;
 
-procedure TFMain.BCreateExcelClick(Sender : TObject);
+procedure TFMain.BCreateExcelClick(Sender: TObject);
 var
-  Excel : Variant;
-  FileName : string;
-  i, j : Integer;
+  Excel: Variant;
+  FileName: string;
+  i, j: Integer;
 begin
   ProgressBar1.Position := 0;
   ProgressBar1.Step := 1;
@@ -70,9 +73,16 @@ begin
   Application.Terminate;
 end;
 
-procedure TFMain.FormCanResize(Sender : TObject; var NewWidth, NewHeight : Integer; var Resize : Boolean);
+procedure TFMain.FormCanResize(Sender: TObject;
+  var NewWidth, NewHeight: Integer; var Resize: Boolean);
 begin
   Resize := false;
+end;
+
+procedure TFMain.ImgDblClick(Sender: TObject);
+begin
+  if OPD.Execute then
+    Img.Picture.LoadFromFile(OPD.FileName);
 end;
 
 end.

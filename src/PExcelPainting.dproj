@@ -1,21 +1,38 @@
 ﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 		<PropertyGroup>
 			<ProjectGuid>{CC930DC9-7AE2-4F9C-AB4D-961B88835A9A}</ProjectGuid>
-			<ProjectVersion>12.3</ProjectVersion>
+			<ProjectVersion>13.4</ProjectVersion>
 			<MainSource>PExcelPainting.dpr</MainSource>
 			<Base>True</Base>
 			<Config Condition="'$(Config)'==''">Debug</Config>
-			<Platform>Win32</Platform>
 			<AppType>Application</AppType>
 			<FrameworkType>VCL</FrameworkType>
 			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
+			<Platform Condition="'$(Platform)'==''">Win32</Platform>
+			<TargetedPlatforms>1</TargetedPlatforms>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="('$(Platform)'=='Win64' and '$(Base)'=='true') or '$(Base_Win64)'!=''">
+			<Base_Win64>true</Base_Win64>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Base)'=='true') or '$(Base_Win32)'!=''">
+			<Base_Win32>true</Base_Win32>
+			<CfgParent>Base</CfgParent>
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_1)'!=''">
 			<Cfg_1>true</Cfg_1>
 			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_1)'=='true') or '$(Cfg_1_Win32)'!=''">
+			<Cfg_1_Win32>true</Cfg_1_Win32>
+			<CfgParent>Cfg_1</CfgParent>
+			<Cfg_1>true</Cfg_1>
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_2)'!=''">
@@ -24,12 +41,24 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
-			<DCC_UsePackage>vclx;vcl;vclimg;dbrtl;Rave90VCL;bdertl;VclSmp;rtl;svnui;svn;TeeUI;TeeDB;Tee;vclactnband;vcldb;vcldbx;vcltouch;xmlrtl;dsnap;dsnapcon;vclib;ibxpress;adortl;IndyCore;IndySystem;IndyProtocols;inet;intrawebdb_110_150;Intraweb_110_150;vclie;websnap;webdsnap;inetdb;inetdbbde;inetdbxpress;soaprtl;vclribbon;dbexpress;DbxCommonDriver;DataSnapIndy10ServerTransport;DataSnapProviderClient;DbxClientDriver;DataSnapClient;dbxcds;DataSnapServer;AzureCloud;DBXInterBaseDriver;DBXMySQLDriver;DBXFirebirdDriver;DBXSybaseASEDriver;DBXSybaseASADriver;DBXOracleDriver;DBXMSSQLDriver;DBXInformixDriver;DBXDb2Driver;dclZipForged15;vclZipForged15;tmsd2011;tmsexd2011;tmswizd2011;tmsxlsd2011;Rtleae;DDSDAC;sdac150;dac150;VCLZipDXE_4;GMLib_DXE;dacvcl150;crcontrols150;sdacvcl150;dxCoreRS15;dxServerModeRS15;cxDataRS15;cxLibraryRS15;dxGDIPlusRS15;dxThemeRS15;dxADOServerModeRS15;dxDBXServerModeRS15;cxEditorsRS15;dxmdsRS15;dxBarRS15;dxComnRS15;dxBarDBNavRS15;dxBarExtDBItemsRS15;dxBarExtItemsRS15;dxRibbonRS15;cxBarEditItemRS15;dxdbtrRS15;dxtrmdRS15;cxPageControlRS15;dxDockingRS15;dxFlowChartRS15;cxPageControldxBarPopupMenuRS15;dxTabbedMDIRS15;dxLayoutControlRS15;dxNavBarRS15;dxorgcRS15;dxdborRS15;cxGridRS15;cxExportRS15;cxPivotGridRS15;cxPivotGridChartRS15;cxPivotGridOLAPRS15;cxTreeListRS15;cxTreeListdxBarPopupMenuRS15;cxSchedulerRS15;cxSchedulerGridRS15;dcldxSkinsCoreRS15;dxSkinsCoreRS15;dxSkinscxPCPainterRS15;dxSkinscxSchedulerPainterRS15;dxSkinsdxDLPainterRS15;dxSkinsdxBarPainterRS15;dxSkinsdxNavBarPainterRS15;dxSpellCheckerRS15;cxSpreadSheetRS15;cxVerticalGridRS15;dxPSCoreRS15;dxPSLnksRS15;dxPScxCommonRS15;dxPScxExtCommonRS15;dxPScxGridLnkRS15;dxPSdxLCLnkRS15;dxPScxPivotGridLnkRS15;dxPScxSchedulerLnkRS15;dxPScxSSLnkRS15;dxPScxTLLnkRS15;dxPScxVGridLnkRS15;dxPSTeeChartRS15;dxPSDBTeeChartRS15;dxPSdxOCLnkRS15;dxPSdxDBOCLnkRS15;dxPSdxDBTVLnkRS15;dxPSdxFCLnkRS15;dxPScxPCProdRS15;dxPsPrVwAdvRS15;dxPSPrVwRibbonRS15;dxSkinsdxRibbonPainterRS15;dxTileControlRS15;fs15;frx15;frxcs15;fsDB15;frxDB15;fsBDE15;frxBDE15;fsADO15;frxADO15;fsIBX15;frxIBX15;frxDBX15;frxe15;fsTee15;frxTee15;DCEF_D7</DCC_UsePackage>
+			<VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+			<DCC_Namespace>Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;System;Xml;Data;Datasnap;Web;Soap;Winapi;System.Win;$(DCC_Namespace)</DCC_Namespace>
+			<VerInfo_Locale>1049</VerInfo_Locale>
+			<DCC_UsePackage>vclx;vcl;vclimg;dbrtl;Rave90VCL;bdertl;VclSmp;rtl;svnui;svn;TeeUI;TeeDB;Tee;vclactnband;vcldb;vcldbx;vcltouch;xmlrtl;dsnap;dsnapcon;vclib;ibxpress;adortl;IndyCore;IndySystem;IndyProtocols;inet;intrawebdb_110_150;Intraweb_110_150;vclie;websnap;webdsnap;inetdb;inetdbbde;inetdbxpress;soaprtl;vclribbon;dbexpress;DbxCommonDriver;DataSnapIndy10ServerTransport;DataSnapProviderClient;DbxClientDriver;DataSnapClient;dbxcds;DataSnapServer;AzureCloud;DBXInterBaseDriver;DBXMySQLDriver;DBXFirebirdDriver;DBXSybaseASEDriver;DBXSybaseASADriver;DBXOracleDriver;DBXMSSQLDriver;DBXInformixDriver;DBXDb2Driver;dclZipForged15;vclZipForged15;tmsd2011;tmsexd2011;tmswizd2011;tmsxlsd2011;Rtleae;DDSDAC;sdac150;dac150;VCLZipDXE_4;GMLib_DXE;dacvcl150;crcontrols150;sdacvcl150;dxCoreRS15;dxServerModeRS15;cxDataRS15;cxLibraryRS15;dxGDIPlusRS15;dxThemeRS15;dxADOServerModeRS15;dxDBXServerModeRS15;cxEditorsRS15;dxmdsRS15;dxBarRS15;dxComnRS15;dxBarDBNavRS15;dxBarExtDBItemsRS15;dxBarExtItemsRS15;dxRibbonRS15;cxBarEditItemRS15;dxdbtrRS15;dxtrmdRS15;cxPageControlRS15;dxDockingRS15;dxFlowChartRS15;cxPageControldxBarPopupMenuRS15;dxTabbedMDIRS15;dxLayoutControlRS15;dxNavBarRS15;dxorgcRS15;dxdborRS15;cxGridRS15;cxExportRS15;cxPivotGridRS15;cxPivotGridChartRS15;cxPivotGridOLAPRS15;cxTreeListRS15;cxTreeListdxBarPopupMenuRS15;cxSchedulerRS15;cxSchedulerGridRS15;dcldxSkinsCoreRS15;dxSkinsCoreRS15;dxSkinscxPCPainterRS15;dxSkinscxSchedulerPainterRS15;dxSkinsdxDLPainterRS15;dxSkinsdxBarPainterRS15;dxSkinsdxNavBarPainterRS15;dxSpellCheckerRS15;cxSpreadSheetRS15;cxVerticalGridRS15;dxPSCoreRS15;dxPSLnksRS15;dxPScxCommonRS15;dxPScxExtCommonRS15;dxPScxGridLnkRS15;dxPSdxLCLnkRS15;dxPScxPivotGridLnkRS15;dxPScxSchedulerLnkRS15;dxPScxSSLnkRS15;dxPScxTLLnkRS15;dxPScxVGridLnkRS15;dxPSTeeChartRS15;dxPSDBTeeChartRS15;dxPSdxOCLnkRS15;dxPSdxDBOCLnkRS15;dxPSdxDBTVLnkRS15;dxPSdxFCLnkRS15;dxPScxPCProdRS15;dxPsPrVwAdvRS15;dxPSPrVwRibbonRS15;dxSkinsdxRibbonPainterRS15;dxTileControlRS15;fs15;frx15;frxcs15;fsDB15;frxDB15;fsBDE15;frxBDE15;fsADO15;frxADO15;fsIBX15;frxIBX15;frxDBX15;frxe15;fsTee15;frxTee15;DCEF_D7;$(DCC_UsePackage)</DCC_UsePackage>
 			<DCC_DcuOutput>.\$(Config)\$(Platform)</DCC_DcuOutput>
 			<DCC_ExeOutput>.\$(Config)\$(Platform)</DCC_ExeOutput>
-			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;$(DCC_UnitAlias)</DCC_UnitAlias>
 			<UsePackages>true</UsePackages>
 			<DCC_ImageBase>00400000</DCC_ImageBase>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base_Win64)'!=''">
+			<Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base_Win32)'!=''">
+			<VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+			<DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
+			<VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+			<VerInfo_Locale>1033</VerInfo_Locale>
+			<Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_1)'!=''">
 			<DCC_DcuOutput>.\..\out</DCC_DcuOutput>
@@ -38,6 +67,11 @@
 			<DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
 			<DCC_Optimize>false</DCC_Optimize>
 		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+			<UsePackages>false</UsePackages>
+			<VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+			<VerInfo_Locale>1033</VerInfo_Locale>
+		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_2)'!=''">
 			<DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
 			<DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
@@ -45,7 +79,7 @@
 			<DCC_DebugInformation>false</DCC_DebugInformation>
 		</PropertyGroup>
 		<ItemGroup>
-			<DelphiCompile Include="PExcelPainting.dpr">
+			<DelphiCompile Include="$(MainSource)">
 				<MainSource>MainSource</MainSource>
 			</DelphiCompile>
 			<DCCReference Include="UFMain.pas">
@@ -98,13 +132,16 @@
 						<VersionInfoKeys Name="Comments"/>
 					</VersionInfoKeys>
 					<Excluded_Packages>
-						<Excluded_Packages Name="C:\Program Files (x86)\FastReports\FastReport 4\LibD15\dclfrxibx15.bpl">FastReport 4.0 IBX Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDSBIN)\dcloffice2k160.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDSBIN)\dclofficexp160.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+						<Excluded_Packages Name="C:\Program Files (x86)\Raize\CS5\Bin\CodeSiteExpressPkg_Design160.bpl">File C:\Program Files (x86)\Raize\CS5\Bin\CodeSiteExpressPkg_Design160.bpl not found</Excluded_Packages>
 					</Excluded_Packages>
 					<Source>
 						<Source Name="MainSource">PExcelPainting.dpr</Source>
 					</Source>
 				</Delphi.Personality>
 				<Platforms>
+					<Platform value="Win64">False</Platform>
 					<Platform value="Win32">True</Platform>
 				</Platforms>
 			</BorlandProject>

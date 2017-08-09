@@ -23377,6 +23377,7 @@ object FMain: TFMain
       0000}
     Proportional = True
     Stretch = True
+    OnDblClick = ImgDblClick
   end
   object BCreateExcel: TButton
     Left = 8
@@ -23393,5 +23394,9 @@ object FMain: TFMain
     Width = 273
     Height = 16
     TabOrder = 1
+  end
+  object OPD: TOpenPictureDialog
+    Left = 8
+    Top = 8
   end
 end
