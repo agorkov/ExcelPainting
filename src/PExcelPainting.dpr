@@ -2,13 +2,13 @@ program PExcelPainting;
 
 uses
   Forms,
-  UFMain in 'UFMain.pas' {Form1};
+  UFMain in 'UFMain.pas' {FMain};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TFMain, FMain);
   Application.Run;
 end.

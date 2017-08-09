@@ -49,7 +49,7 @@
 				<MainSource>MainSource</MainSource>
 			</DelphiCompile>
 			<DCCReference Include="UFMain.pas">
-				<Form>Form1</Form>
+				<Form>FMain</Form>
 			</DCCReference>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>
