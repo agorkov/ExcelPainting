@@ -13,12 +13,14 @@ type
     pbCurrentTask : TProgressBar;
     OPD : TOpenPictureDialog;
     pbAll : TProgressBar;
+    tbImageQuality : TTrackBar;
     procedure FormCanResize(Sender : TObject; var NewWidth, NewHeight : Integer; var Resize : Boolean);
     procedure BCreateExcelClick(Sender : TObject);
     procedure ImgDblClick(Sender : TObject);
     procedure FormActivate(Sender : TObject);
+    procedure tbImageQualityChange(Sender : TObject);
   private
-    { Private declarations }
+    procedure ShowStretchedImage;
   public
     { Public declarations }
   end;
@@ -107,23 +109,52 @@ begin
   Resize := false;
 end;
 
-procedure TFMain.ImgDblClick(Sender : TObject);
+procedure TFMain.ShowStretchedImage;
 var
   BM : TBitmap;
   h, w : word;
   k : real;
+  MaxSize : word;
+begin
+  MaxSize := 64;
+  case tbImageQuality.Position of
+    0 :
+      MaxSize := 64;
+    1 :
+      MaxSize := 160;
+    2 :
+      MaxSize := 240;
+    3 :
+      MaxSize := 320;
+    4 :
+      MaxSize := 640;
+    5 :
+      MaxSize := 800;
+    6 :
+      MaxSize := 1024;
+  end;
+  BM := UBitmapFunctions.LoadFromFile(OPD.FileName);
+  h := BM.Height;
+  w := BM.Width;
+  k := Max(h, w) / MaxSize;
+  h := Round(h / k);
+  w := Round(w / k);
+  UBitmapFunctions.BMResize(BM, w, h);
+  Img.Picture.Assign(BM);
+  BM.Free;
+end;
+
+procedure TFMain.tbImageQualityChange(Sender : TObject);
+begin
+  ShowStretchedImage;
+end;
+
+procedure TFMain.ImgDblClick(Sender : TObject);
+
 begin
   if OPD.Execute then
   begin
-    BM := UBitmapFunctions.LoadFromFile(OPD.FileName);
-    h := BM.Height;
-    w := BM.Width;
-    k := Max(h, w) / 64;
-    h := Round(h / k);
-    w := Round(w / k);
-    UBitmapFunctions.BMResize(BM, w, h);
-    Img.Picture.Assign(BM);
-    BM.Free;
+    ShowStretchedImage;
   end;
 end;
 
