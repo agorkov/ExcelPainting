@@ -33,14 +33,10 @@ implementation
 uses
   ComObj, UBitmapFunctions, Math;
 
-type
-  TRGBArray = ARRAY [0 .. 32767] OF TRGBTriple;
-  pRGBArray = ^TRGBArray;
-
 procedure TFMain.BCreateExcelClick(Sender : TObject);
 var
   Excel : Variant;
-  FileName : string;
+  ExcelFileName : string;
   i, j : Integer;
 begin
   pbCurrentTask.Position := 0;
@@ -51,9 +47,9 @@ begin
   pbAll.Step := 1;
   pbAll.Max := 3;
 
-  FileName := ExtractFilePath(Application.ExeName) + 'test.xlsx';
+  ExcelFileName := ChangeFileExt(OPD.FileName, '.xlsx');
   Excel := CreateOleObject('Excel.Application');
-  Excel.Workbooks.Open[FileName];
+  Excel.Workbooks.Add(-4167);
 
   pbCurrentTask.Position := 0;
   pbCurrentTask.Step := 1;
@@ -94,8 +90,8 @@ begin
   pbAll.StepIt;
   Application.ProcessMessages;
 
-  Excel.ActiveWorkbook.Save;
-  Excel.ActiveWorkbook.Close;
+  Excel.ActiveWorkBook.SaveAs(ExcelFileName);
+  Excel.ActiveWorkBook.Close;
   Excel.Application.Quit;
 
   Application.Terminate;
